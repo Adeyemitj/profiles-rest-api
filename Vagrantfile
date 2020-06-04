@@ -26,8 +26,10 @@ Vagrant.configure("2") do |config| # api version '2' is the latest now
     sudo apt-get install -y python3-dev sqlite python-pip
     # Upgrade pip to the latest version.
     sudo pip install --upgrade pip
+    # Install virtual environment
+    sudo pip3 install virtualenv
     # Install and configure python virtualenvwrapper.
-    sudo pip install virtualenvwrapper
+    sudo pip3 install virtualenvwrapper
     if ! grep -q VIRTUALENV_ALREADY_ADDED /home/ubuntu/.bashrc; then
         echo "# VIRTUALENV_ALREADY_ADDED" >> /home/ubuntu/.bashrc
         echo "WORKON_HOME=~/.virtualenvs" >> /home/ubuntu/.bashrc
