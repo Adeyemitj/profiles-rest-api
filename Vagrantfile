@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config| # api version '2' is the latest now
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
 
-  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8080, host: 5050
+  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8080, host: 8081
 
   config.vm.provision "shell", inline: <<-SHELL
     # Update and upgrade the server packages.
@@ -27,15 +27,16 @@ Vagrant.configure("2") do |config| # api version '2' is the latest now
     # Upgrade pip to the latest version.
     sudo pip install --upgrade pip
     # Install virtual environment
-    sudo pip3 install virtualenv
+    sudo pip install virtualenv
     # Install and configure python virtualenvwrapper.
-    sudo pip3 install virtualenvwrapper
+    sudo pip install virtualenvwrapper
     if ! grep -q VIRTUALENV_ALREADY_ADDED /home/ubuntu/.bashrc; then
         echo "# VIRTUALENV_ALREADY_ADDED" >> /home/ubuntu/.bashrc
-        echo "WORKON_HOME=~/.virtualenvs" >> /home/ubuntu/.bashrc
+        echo "export WORKON_HOME=~/.virtualenvs" >> /home/ubuntu/.bashrc
         echo "PROJECT_HOME=/vagrant" >> /home/ubuntu/.bashrc
         echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/ubuntu/.bashrc
     fi
+
   SHELL
 
 end
