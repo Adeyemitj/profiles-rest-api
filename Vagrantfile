@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config| # api version '2' is the latest now
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
 
-  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 80, host: 8000
+  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 5000, host: 5000
   #config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 2020, host: 12020, protocol: "udp"
 
   config.vm.provision "shell", inline: <<-SHELL
