@@ -16,7 +16,7 @@ class UserProfileManager(BaseUserManager):
         #normalizes email address
         email = self.normalize_email(email)
         #create a new user profile objects
-        user = self.models(email=email, name=name)
+        user = self.model(email=email, name=name)
         #set user's password
         user.set_password(password)
         #save to db
