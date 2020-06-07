@@ -10,7 +10,8 @@ class UserProfileManager(BaseUserManager):
     """Helps Django work with our custom user model."""
     def create_user(self, email, name, password=None):
         """Creates a new user profile object."""
-        if not email: #check for email input
+        #check for email input
+        if not email:
             raise ValueError('Users must have an email address')
 
         #normalizes email address
@@ -38,7 +39,7 @@ class UserProfileManager(BaseUserManager):
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
-    """Represent a "a user profile" inside our system."""
+    """Represent "a user profile" inside our system."""
 
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
@@ -47,20 +48,22 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     objects = UserProfileManager()
 
-    USERNAME_FIELD = 'email' # making email a default username
+    # making email a default username
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
 
-    #function to get a user's full name
+    #helper function to get a user's full name
     def get_full_name(self):
 
         return self.name
 
-    #function to get a user's short name
+    #helper function to get a user's short name
     def get_short_name(self):
 
         return self.name
 
-    #return string objects
+    #helper return string objects
     def __str__(self):
+        """Django uses this when it needs to convert the object to a string"""
 
         return self.email
